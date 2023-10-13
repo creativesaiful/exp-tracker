@@ -34,7 +34,6 @@
 
 @section('content')
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi odit, eos voluptatem magni omnis, similique exercitationem dolor voluptas accusantium rerum sequi deserunt incidunt, quibusdam impedit.</p>
-
+<h2>This is Dashboard Page</h2>
 
 @endsection

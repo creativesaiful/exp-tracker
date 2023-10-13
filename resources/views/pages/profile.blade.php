@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+
     <div class="card card-body" id="profile">
         <div class="row justify-content-center align-items-center">
             <div class="col-sm-auto col-4">
                 <div class="avatar avatar-xl position-relative">
-                    <img src="{{$user->profile_photo_url}}" alt="bruce" class="w-100 rounded-circle shadow-sm">
+                    <img src="{{ $user->profile_photo_path ? asset('storage/uploads/' . $user->profile_photo_path) : asset('assets/img/placeholder.png') }}" alt="bruce" class="w-100 rounded-circle shadow-sm">
                 </div>
             </div>
             <div class="col-sm-auto col-8 my-auto">
@@ -26,6 +28,18 @@
                 <h5>Basic Info</h5>
             </div>
             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="multisteps-form__form">
+
+                @if (count($errors) > 0)
+                <div class="alert alert-danger text-white">
+                    <ul>
+               
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
                @csrf
                 <div class="card-body pt-0">
                     <div class="row">
@@ -48,14 +62,16 @@
                     <div class="row">
                         <div class="col-6">
                             <label class="form-control ms-0">Default Currency</label>
-                            <select class="form-control" name="default_currency" id="choices-category">
-                                <option selected="">Select</option>
-                                <option value="usd"> USD </option>
+                            <select class="form-control p-2 border" name="default_currency" id="choices-category">
+                                <option selected="" disabled>Select</option>
+                                <option value="usd" > USD </option>
                                 <option value="bdt">BDT </option>
                                 <option value="uae">UAE</option>
                                 <option value="euro">EURO</option>
                             </select>
                         </div>
+
+                     
 
                         <div class="col-6">
                             <label class="form-control mb-0">Profile images</label>
@@ -63,6 +79,8 @@
                         </div>
 
                     </div>
+
+                    <hr>
 
                     <div class="row">
                         <div class="col-6">
@@ -75,3 +93,9 @@
             </form>
         </div>
     @endsection
+
+    @section('scripts')
+            {{-- I want to add currecny exchange rate scripts --}}
+
+
+    @endsection 

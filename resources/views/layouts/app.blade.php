@@ -67,9 +67,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('assets/css/material-dashboard.css?v=3.0.6')}}" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+  
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -188,7 +193,6 @@
   <script src="{{asset('assets/js/plugins/dropzone.min.js')}}"></script>
   <script src="{{asset('assets/js/plugins/world.js')}}"></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -483,30 +487,7 @@
 
     });
 
-    <script>
-        @if (Session::has('message'))
-
-            var type = ("{{ Session::get('type') }}");
-
-            var message = ("{{ Session::get('message') }}");
-            switch (type) {
-            case 'success':
-            toastr.success(message);
-            break;
-            case 'warning':
-            toastr.warning(message);
-            break;
-            case 'error':
-            toastr.error(message);
-            break;
-            case 'info':
-            toastr.info(message);
-            break;
-            }
-
-        @endif
-    </script>
-
+   
 
   </script>
   <script>
@@ -520,9 +501,34 @@
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+ 
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('assets/js/material-dashboard.min.js?v=3.0.6')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script>
+    @if (Session::has('message'))
+
+        var type = ("{{ Session::get('type') }}");
+
+        var message = ("{{ Session::get('message') }}");
+        switch (type) {
+        case 'success':
+        toastr.success(message);
+        break;
+        case 'warning':
+        toastr.warning(message);
+        break;
+        case 'error':
+        toastr.error(message);
+        break;
+        case 'info':
+        toastr.info(message);
+        break;
+        }
+
+    @endif
+</script>
+
 </body>
 
 </html>

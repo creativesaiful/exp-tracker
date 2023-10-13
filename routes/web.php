@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('pages.dashboard');
     })->name('dashboard');
+
+    Route::get('/profile', [UserProfileController::class, 'ProfileView'])->name('profile');
+    Route::post('/profile', [UserProfileController::class, 'ProfileUpdate'])->name('profile.update');
+
 });

@@ -7,7 +7,7 @@ use App\Models\User;
 
 class UserProfileController extends Controller
 {
-    function ProfileView(){
+   public function ProfileView(){
         
         $user = User::where('id', auth()->user()->id)->first();
       
@@ -16,7 +16,7 @@ class UserProfileController extends Controller
     }
 
 
-    function ProfileUpdate(Request $request){
+    public function ProfileUpdate(Request $request){
 
       
         $validate = $request->validate([

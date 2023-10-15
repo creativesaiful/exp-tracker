@@ -31,16 +31,20 @@
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link text-white active" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
             <i class="material-icons-round opacity-10">dashboard</i>
-            <span class="nav-link-text ms-2 ps-1">Dashboards</span>
+            <span class="nav-link-text ms-2 ps-1">Expense</span>
           </a>
           <div class="collapse  show " id="dashboardsExamples">
             <ul class="nav ">
               <li class="nav-item active">
-                <a class="nav-link text-white active" href="../../pages/dashboards/analytics.html">
-                  <span class="sidenav-mini-icon"> A </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Analytics </span>
+                <a class="nav-link text-white active" href="{{route('categories')}}">
+                  <span class="sidenav-mini-icon"> C </span>
+                  <span class="sidenav-normal  ms-2  ps-1"> Categories </span>
                 </a>
+
+
               </li>
+
+              
               <li class="nav-item ">
                 <a class="nav-link text-white " href="../../pages/dashboards/discover.html">
                   <span class="sidenav-mini-icon"> D </span>

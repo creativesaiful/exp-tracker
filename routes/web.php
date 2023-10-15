@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,17 @@ Route::middleware([
 
     Route::get('/profile', [UserProfileController::class, 'ProfileView'])->name('profile');
     Route::post('/profile', [UserProfileController::class, 'ProfileUpdate'])->name('profile.update');
+
+
+    Route::get('categories', [CategoryController::class, 'CategoryList'])->name('categories');
+    Route::post('store-category', [CategoryController::class, 'CategoryStore'])->name('store-category');
+
+
+    //ajax
+    Route::get('edit-category/{id}',   [CategoryController::class, 'EditCategory'])->name('edit-category');
+   Route::get('delete-category/{id}',   [CategoryController::class, 'DeleteCategory'])->name('delete-category');
+   
+   
+    Route::post('update-category',   [CategoryController::class, 'UpdateCategory'])->name('update-category');
 
 });

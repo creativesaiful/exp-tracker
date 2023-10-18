@@ -46,9 +46,9 @@
 
               
               <li class="nav-item ">
-                <a class="nav-link text-white " href="../../pages/dashboards/discover.html">
-                  <span class="sidenav-mini-icon"> D </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Discover </span>
+                <a class="nav-link text-white " href="{{route('budgets')}}">
+                  <span class="sidenav-mini-icon"> B </span>
+                  <span class="sidenav-normal  ms-2  ps-1"> Budget </span>
                 </a>
               </li>
               <li class="nav-item ">

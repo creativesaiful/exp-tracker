@@ -33,11 +33,11 @@
             <td class="text-sm font-weight-normal">{{ $categories->category_name }}</td>
             <td class="text-sm font-weight-normal">
               
-              <button type="button"  class="btn bg-gradient-primary edit" data-id="{{ $categories->id }}" data-bs-toggle="modal" data-bs-target="#editCategoryModal"  onclick="editCategory({{ $categories->id }})" >
+              <button type="button"  class="btn bg-gradient-primary edit"  data-bs-toggle="modal" data-bs-target="#editCategoryModal"  onclick="editCategory({{ $categories->id }})" >
                 Edit
               </button>
               
-              <button type="button"  class="btn bg-gradient-danger edit" data-id="{{ $categories->id }}" onclick="deleteCategory({{ $categories->id }}) "  >
+              <button type="button"  class="btn bg-gradient-danger edit" onclick="deleteCategory({{ $categories->id }}) "  >
                 Delete
               </button>
               
@@ -131,16 +131,7 @@
 </div>
 
 
-
-
 @endsection
-
-
-
-
-
-
-
 
 
 @section('datatables')
@@ -160,6 +151,7 @@
       type: 'GET',
       success: function(response) {
 
+
         $('#category-name').val(response.category_name);
         $('#category-id').val(response.id);
    
@@ -172,6 +164,7 @@
         url: '/delete-category/' + id ,
         type: 'GET',
         success: function(response) {
+
       
           toastr.warning(response.message);
           window.location.reload();

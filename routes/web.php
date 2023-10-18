@@ -46,4 +46,6 @@ Route::middleware([
 
     Route::get('budgets', [BudgetController::class, 'BudgetList'])->name('budgets');
 
+    Route::post('store-budget', [BudgetController::class, 'BudgetStore'])->name('budget-store');
+
 });

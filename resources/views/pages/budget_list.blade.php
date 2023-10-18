@@ -249,8 +249,9 @@
                 if (period === 'monthly') {
                     if (category === "Select" || period === "Select" || month === "Select" || year === "Select" ||
                         budgetAmount === "") {
-                        toastr.error('Please fill all required fields');
+                        toastr.error('Please fill all required fields'); 
                         return false;
+                        
                     }
                 } else {
                     if (category === "Select" || period === "Select" || year === "Select" || budgetAmount === "") {

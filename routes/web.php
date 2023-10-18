@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BudgetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +39,11 @@ Route::middleware([
 
     //ajax
     Route::get('edit-category/{id}',   [CategoryController::class, 'EditCategory'])->name('edit-category');
-   Route::get('delete-category/{id}',   [CategoryController::class, 'DeleteCategory'])->name('delete-category');
+    Route::get('delete-category/{id}',   [CategoryController::class, 'DeleteCategory'])->name('delete-category');
    
    
     Route::post('update-category',   [CategoryController::class, 'UpdateCategory'])->name('update-category');
+
+    Route::get('budgets', [BudgetController::class, 'BudgetList'])->name('budgets');
 
 });

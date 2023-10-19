@@ -45,7 +45,7 @@
                                 Edit
                             </button>
 
-                            <button type="button" class="btn bg-gradient-danger edit" onclick="deleteBudget() ">
+                            <button type="button" class="btn bg-gradient-danger edit" onclick="deleteBudget({{ $budget->id }}) ">
                                 Delete
                             </button>
 

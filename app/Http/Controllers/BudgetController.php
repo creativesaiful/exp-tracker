@@ -93,8 +93,8 @@ class BudgetController extends Controller
         public function DeleteBudget($id){
         
             try {
-                 $category = Budget::find($id);
-                 $category->delete();
+                 $budget = Budget::find($id);
+                 $budget->delete();
      
                  return response ()->json([
                      'type' => 'success',

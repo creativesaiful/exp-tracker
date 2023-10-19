@@ -86,12 +86,26 @@ class BudgetController extends Controller
 
         }
 
-
-
-
-
-     
-     
-
     }
+
+    //Delete Budget
+        //ajax for delete
+        public function DeleteBudget($id){
+        
+            try {
+                 $budget = Budget::find($id);
+                 $budget->delete();
+     
+                 return response ()->json([
+                     'type' => 'success',
+                     'message'=>'Budget was deleted successfully',
+                 ]);
+     
+             } catch (\Throwable $th) {
+                 return response ()->json([
+                     'type' => 'error',
+                     'message'=>'Something went wrong',
+                 ]);
+             }
+         }
 }

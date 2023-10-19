@@ -87,9 +87,5 @@ class CategoryController extends Controller
                 'message'=>'Something went wrong',
             ]);
         }
-
-      
-
-
     }
 }

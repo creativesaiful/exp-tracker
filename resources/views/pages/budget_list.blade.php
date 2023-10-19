@@ -10,7 +10,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-flush" id="category-table">
+        <table class="table table-flush" id="budget-table">
             <thead class="thead-light">
                 <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SL</th>
@@ -45,7 +45,7 @@
                                 Edit
                             </button>
 
-                            <button type="button" class="btn bg-gradient-danger edit" onclick="deleteCategory() ">
+                            <button type="button" class="btn bg-gradient-danger edit" onclick="deleteBudget({{ $budget->id }}) ">
                                 Delete
                             </button>
 
@@ -85,11 +85,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
-
-
-
-
                     <form action="" id="budget-add-form">
                         @csrf
                         <div class="input-group input-group-static mb-4">
@@ -138,9 +133,6 @@
 
 
                     </form>
-
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
@@ -194,7 +186,7 @@
 
 @section('datatables')
     <script>
-        const dataTableBasic = new simpleDatatables.DataTable("#category-table", {
+        const dataTableBasic = new simpleDatatables.DataTable("#budget-table", {
             searchable: true,
             fixedHeight: true
         });
@@ -268,5 +260,19 @@
 
 
         }
+
+        function deleteBudget(id){
+      $.ajax({
+        url: '/delete-budget/' + id ,
+        type: 'GET',
+        success: function(response) {
+
+      
+          toastr.warning(response.message);
+          window.location.reload();
+
+        }
+      })
+    }
     </script>
 @endsection

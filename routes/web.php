@@ -49,4 +49,7 @@ Route::middleware([
     Route::post('store-budget', [BudgetController::class, 'BudgetStore'])->name('budget-store');
     Route::get('delete-budget/{id}',   [BudgetController::class, 'DeleteBudget'])->name('delete-budget');
 
+    // Expense Routes
+    Route::get('/expenses', [ExpenseController::class,'index()'] )->name('expenses');
+
 });

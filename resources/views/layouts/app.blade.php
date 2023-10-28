@@ -90,7 +90,7 @@
 
     <!-- End Navbar -->
 
-
+    <button type="button"  class="btn bg-gradient-primary" onclick="changeAmount()">Change</button>
     <div class="container-fluid py-4">
 
       @yield('content')
@@ -533,61 +533,119 @@
 </script>
 
 
-<script>
-$.get('https://openexchangerates.org/api/latest.json', { app_id: '241adaf13f2e4d2d9e901e82d1548a10' }, function (data) {
-    var options = '';
-    var rates = data.rates;
 
-    Object.keys(rates).forEach(function (currencyCode) {
-        var currencyRate = rates[currencyCode];
-       
-
-        options += '<option value="' + currencyRate + '">' + currencyCode + '</option>';
-    });
-
-    $('#currency').html(options);
-});
-
-
-$('#currency').change(function () {
-    var rate = $(this).val();
-  
-    $.ajax({
-        url: 'currency-converter/'+rate,
-        type: 'GET',
-        success: function (response) {
-            console.log(response);
-        }
-        
-    });
-    
-});
-
- 
-
-
-
-
-// $.get('https://openexchangerates.org/api/currencies.json', function(data) {
-//     // Iterate through the properties (currencies) in the data object
-
-//     var options = '';
-//     Object.keys(data).forEach(function(currencyCode) {
-//         var currencyName = data[currencyCode];
-//         console.log(currencyCode + ': ' + currencyName);
-
-//         options += '<option value="' + currencyCode + '">' + currencyCode + '</option>';
-//     });
-
-//     $('#currency').html(options);
-// });
-
-
-</script>
 
 @yield('datatables')
 
+<script>
+  $.get('https://openexchangerates.org/api/latest.json', { app_id: '241adaf13f2e4d2d9e901e82d1548a10' }, function (data) {
+    console.log(data)
+      var options = '';
+      var rates = data.rates;
+      options += '<option value="1">USD</option>';//Default USD setup
+      Object.keys(rates).forEach(function (currencyCode) {
+          var currencyRate = rates[currencyCode];
+         
+  
+          options += '<option value="' + currencyRate + '">' + currencyCode + '</option>';
+      });
+  
+      $('#currency').html(options);
+  });
+  
 
+//Currency conversion without preserving original values
+      $('#currency').change(function () {
+      var rate = $(this).val();
+    
+      $.ajax({
+          url: 'currency-converter/'+rate,
+          type: 'GET',
+          success: function (response) {
+              console.log(rate );
+              $(".amount").each(function() {
+          // Get the current text inside the <span>
+          var currentValue = $(this).text();
+          
+          // Convert the text to a number, multiply it by 80, and set it back as the text
+          $(this).text(parseInt(currentValue) * rate);
+      });
+          }
+          
+      });
+      
+  });
+
+
+//Currency conversion with preserving original values
+  // $('#currency').change(function () {
+  //     var rate = $(this).val();
+    
+  //     $.ajax({
+  //         url: 'currency-converter/'+rate,
+  //         type: 'GET',
+  //         success: function (response) {
+  //             console.log(rate );
+              
+  //           $(".amount").each(function() {
+  //               // Get the original value from data
+  //               var originalValue = $(this).data("original-value");
+
+  //               // Calculate the new value based on the rate and original value
+  //               var newValue = originalValue * rate;
+
+  //               // Update the text with the new value
+  //               $(this).text(newValue);
+  //           });
+      
+  //         }
+          
+  //     });
+      
+  // });
+
+
+  
+  // $(document).ready(function() {
+
+  //    alert("working");
+  //     // Loop through each <span> element with class "amount"
+  //       $(".amount").each(function() {
+  //         alert("working2");
+  //       var originalValue = $(this).text();
+  //       $(this).data("original-value", originalValue);
+  //       alert('originalValue')
+  //   });
+
+        
+  // });
+  function changeAmount(){
+          // alert("working2");
+      $(".amount").each(function() {
+          // Get the current text inside the <span>
+          var currentValue = $(this).text();
+          
+          // Convert the text to a number, multiply it by 80, and set it back as the text
+          $(this).text(parseInt(currentValue) * currencyRate);
+      });
+    }
+  
+  // $.get('https://openexchangerates.org/api/currencies.json', function(data) {
+  //     // Iterate through the properties (currencies) in the data object
+  
+  //     var options = '';
+  //     Object.keys(data).forEach(function(currencyCode) {
+  //         var currencyName = data[currencyCode];
+  //         console.log(currencyCode + ': ' + currencyName);
+  
+  //         options += '<option value="' + currencyCode + '">' + currencyCode + '</option>';
+  //     });
+  
+  //     $('#currency').html(options);
+  // });
+  
+  
+  </script>
 
 </body>
 

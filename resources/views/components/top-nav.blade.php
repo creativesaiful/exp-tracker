@@ -20,6 +20,7 @@
 
             <select class="form-control" id="currency" name="payment_method" required>
                 <option >Currency</option>
+                <option >Choose</option>
                 
             </select>
           </div>

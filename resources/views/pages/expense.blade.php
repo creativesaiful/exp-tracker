@@ -200,12 +200,13 @@
                         <td>${response[i].description}</td>
                         <td>${response[i].category.category_name}</td>
                         <td>${response[i].payment_method}</td>
-                        <td>${response[i].expense_amount}</td>
+                        <td class="amount">${response[i].expense_amount}</td>
                         <td>
                             
                             <button type="button" class="btn bg-gradient-info edit" data-bs-toggle="modal" data-bs-target="#editExpenseModal" onclick="editExpense(${response[i].id})">Edit</button>
 
                             <button type="button" class="btn bg-gradient-danger edit" onclick="deleteExpense(${response[i].id})">Delete</button>
+                            
 
 
 
@@ -305,6 +306,7 @@
                     }
                 });
             }
+          
 
         });
     </script>

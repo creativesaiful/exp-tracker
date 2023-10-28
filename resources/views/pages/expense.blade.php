@@ -140,7 +140,7 @@
                                 <option value="Card">Card</option>
                                 <option value="Cheque">Cheque</option>
                             </select>
-                        </div>
+                        </div> 
 
 
 

@@ -28,7 +28,9 @@
                 </tr>
             </thead>
             <tbody id="expense-body">
-
+           
+               
+            
 
 
             </tbody>
@@ -126,13 +128,14 @@
 
                         <div class="input-group input-group-outline mb-3">
                             <label class="form-label">Description </label>
-                            <input type="text" id="edit_description" name="description" class="form-control" required>
+                            <input type="text" id="edit_description" name="description" class="form-control"
+                                required>
                         </div>
 
                         <div class="input-group input-group-static mb-4">
                             <label for="category" class="ms-0">Select Payment Method</label>
                             <select class="form-control" id="edit_payment_method" name="payment_method" required>
-                           
+
                                 <option value="Cash">Cash</option>
                                 <option value="Card">Card</option>
                                 <option value="Cheque">Cheque</option>
@@ -165,24 +168,32 @@
 
 @section('datatables')
     <script>
-        
+        $(document).ready(function() {
 
 
-        showExpense();
 
-        function showExpense() {
-            $.ajax({
-                url: 'expenses/',
-                type: 'GET',
-                success: function(response) {
-                    var Html = ''; // Initialize an empty string to accumulate HTML
+            const dataTableBasic = new simpleDatatables.DataTable("#expense-table", {
+                searchable: true,
+                paging: true, // Enable pagination
+                ordering: true, // En
 
-                    for (var i = 0; i < response.length; i++) {
+            });
+
+            showExpense();
+
+            function showExpense() {
+                $.ajax({
+                    url: 'expenses/',
+                    type: 'GET',
+                    success: function(response) {
+                        var Html = ''; // Initialize an empty string to accumulate HTML
+
+                        for (var i = 0; i < response.length; i++) {
 
 
-                        var createdAt = new Date(response[i].created_at);
+                            var createdAt = new Date(response[i].created_at);
 
-                        Html += `
+                            Html += `
                     <tr>
                         <td> ${i+1} </td>
                         <td>${createdAt.toLocaleDateString('en-GB')}</td>
@@ -202,105 +213,99 @@
                         </td>
                     </tr>
                 `;
-                    }
+                        }
 
-                    // Set the HTML of the #expense-table element after the loop
-                    $('#expense-body').html(Html);
+
+               
+
+                        // Set the HTML of the #expense-table element after the loop
+                        $('#expense-body').html(Html);
+                    }
+                });
+            }
+
+            //Add expesns
+            function storeExpense() {
+                var category_id = $('#category_id').val();
+                var payment_method = $('#payment_method').val();
+                var expense_amount = $('#expense_amount').val();
+
+
+                if (category_id === "Select" || payment_method === "Select" || expense_amount === "") {
+                    toastr.error('Please fill all required fields');
+                    return false;
+                } else {
+                    $.ajax({
+                        url: 'store-expense',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'POST',
+                        data: $('#expense-add-form').serialize(),
+                        success: function(response) {
+                            showExpense();
+                            $('#addExpenseModal').modal('hide');
+                            $('#expense-add-form')[0].reset();
+                            toastr.success(response.message);
+                        }
+                    })
                 }
-            });
-        }
-
-        //Add expesns
-        function storeExpense() {
-            var category_id = $('#category_id').val();
-            var payment_method = $('#payment_method').val();
-            var expense_amount = $('#expense_amount').val();
 
 
-            if (category_id === "Select" || payment_method === "Select" || expense_amount === "") {
-                toastr.error('Please fill all required fields');
-                return false;
-            } else {
-                $.ajax({
-                    url: 'store-expense',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'POST',
-                    data: $('#expense-add-form').serialize(),
-                    success: function(response) {
-                        showExpense();
-                        $('#addExpenseModal').modal('hide');
-                        $('#expense-add-form')[0].reset();
-                        toastr.success(response.message);
-                    }
-                })
             }
 
 
-        }
-
-
-        //Edit expesns
-        function editExpense(id){
-            $.ajax({
-                url: 'edit-expense/' + id,
-                type: 'GET',
-                success: function(response) {
-    
-                  
-                
-                    $('#expense-id').val(id);
-                    $('#edit_description').val(response[0].description);
-                    $('#edit_expense_amount').val(response[0].expense_amount);
-                }
-            });
-        }
-
-
-        //update expeses
-        function UpdateExpense(){
-            var expense_id = $('#expense-id').val();
-            var expense_amount = $('#edit_expense_amount').val();
-            if(expense_amount === ""){
-                toastr.error('Please fill all required fields');
-            }else{
+            //Edit expesns
+            function editExpense(id) {
                 $.ajax({
-                    url: 'update-expense/'+ expense_id,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'POST',
-                    data: $('#expense-edit-form').serialize(),
+                    url: 'edit-expense/' + id,
+                    type: 'GET',
+                    success: function(response) {
+                        $('#expense-id').val(id);
+                        $('#edit_description').val(response[0].description);
+                        $('#edit_expense_amount').val(response[0].expense_amount);
+                    }
+                });
+            }
+
+
+            //update expeses
+            function UpdateExpense() {
+                var expense_id = $('#expense-id').val();
+                var expense_amount = $('#edit_expense_amount').val();
+                if (expense_amount === "") {
+                    toastr.error('Please fill all required fields');
+                } else {
+                    $.ajax({
+                        url: 'update-expense/' + expense_id,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'POST',
+                        data: $('#expense-edit-form').serialize(),
+                        success: function(response) {
+                            showExpense();
+                            $('#editExpenseModal').modal('hide');
+                            toastr.success(response.message);
+                        }
+
+                    })
+                }
+            }
+
+            //    delete expens 
+
+            function deleteExpense(id) {
+                $.ajax({
+                    url: 'expenses/' + id,
+                    type: 'get',
                     success: function(response) {
                         showExpense();
-                        $('#editExpenseModal').modal('hide');
-                        toastr.success(response.message);
+                        toastr.warning(response.message);
                     }
-
-                })
+                });
             }
-        }
 
-        //    delete expens 
-
-        function deleteExpense(id) {
-            $.ajax({
-                url: 'expenses/' + id,
-                type: 'get',
-                success: function(response) {
-                    showExpense();
-                    toastr.warning(response.message);
-                }
-            });
-        }
-        const dataTableBasic = new simpleDatatables.DataTable("#expense-table", {
-            searchable: true,
-            paging: true, // Enable pagination
-             ordering: true, // En
-           
         });
-
-
     </script>
 @endsection

@@ -8,19 +8,50 @@
     </div>
 
 
+ @php
+    $route = Route::currentRouteName();
 
+
+@endphp
 
     <hr class="horizontal light mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main">
       <ul class="navbar-nav">
 
         <li class="nav-item">
-          <a href="{{ route('dashboard') }}" class="nav-link text-white active" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+          <a href="{{ route('dashboard') }}" class="nav-link text-white {{ ($route == 'dashboard') ? 'active' : '' }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
             <i class="material-icons-round opacity-10">dashboard</i>
             <span class="nav-link-text ms-2 ps-1">Dashboards</span>
           </a>
           
         </li>
+
+        <li class="nav-item">
+          <a href="{{ route('categories') }}" class="nav-link text-white  {{  $route == 'categories' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+            <i class="material-icons-round opacity-10">dashboard</i>
+            <span class="nav-link-text ms-2 ps-1">Expense Category</span>
+          </a>
+          
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('budgets') }}" class="nav-link text-white  {{  $route == 'budgets' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+            <i class="material-icons-round opacity-10">dashboard</i>
+            <span class="nav-link-text ms-2 ps-1">Budgets</span>
+          </a>
+          
+        </li>
+
+
+        <li class="nav-item">
+          <a href="{{ route('expenseView') }}" class="nav-link text-white  {{  $route == 'expenseView' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+            <i class="material-icons-round opacity-10">dashboard</i>
+            <span class="nav-link-text ms-2 ps-1">Expenses</span>
+          </a>
+          
+        </li>
+
+
 
         
      
@@ -28,114 +59,9 @@
 
 
         <hr class="horizontal light mt-0">
-        <li class="nav-item">
-          <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link text-white active" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
-            <i class="material-icons-round opacity-10">dashboard</i>
-            <span class="nav-link-text ms-2 ps-1">Expense</span>
-          </a>
-          <div class="collapse  show " id="dashboardsExamples">
-            <ul class="nav ">
-              <li class="nav-item active">
-                <a class="nav-link text-white active" href="{{route('categories')}}">
-                  <span class="sidenav-mini-icon"> C </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Categories </span>
-                </a>
-
-
-              </li>
-
-              
-              <li class="nav-item ">
-                <a class="nav-link text-white " href="{{route('budgets')}}">
-                  <span class="sidenav-mini-icon"> B </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Budget </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link text-white " href="{{route('expenseView')}}">
-                  <span class="sidenav-mini-icon"> E </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Expenses </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link text-white " href="../../pages/dashboards/automotive.html">
-                  <span class="sidenav-mini-icon"> A </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Automotive </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link text-white " href="../../pages/dashboards/smart-home.html">
-                  <span class="sidenav-mini-icon"> S </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Smart Home </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">PAGES</h6>
-        </li>
-        <li class="nav-item">
-          <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link text-white " aria-controls="pagesExamples" role="button" aria-expanded="false">
-            <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">image</i>
-            <span class="nav-link-text ms-2 ps-1">Pages</span>
-          </a>
-          <div class="collapse " id="pagesExamples">
-            <ul class="nav ">
-              <li class="nav-item ">
-                <a class="nav-link text-white " data-bs-toggle="collapse" aria-expanded="false" href="#profileExample">
-                  <span class="sidenav-mini-icon"> P </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Profile <b class="caret"></b></span>
-                </a>
-                <div class="collapse " id="profileExample">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a class="nav-link text-white " href="../../pages/pages/profile/overview.html">
-                        <span class="sidenav-mini-icon"> P </span>
-                        <span class="sidenav-normal  ms-2  ps-1"> Profile Overview </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-white " href="../../pages/pages/profile/projects.html">
-                        <span class="sidenav-mini-icon"> A </span>
-                        <span class="sidenav-normal  ms-2  ps-1"> All Projects </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-white " href="../../pages/pages/profile/messages.html">
-                        <span class="sidenav-mini-icon"> M </span>
-                        <span class="sidenav-normal  ms-2  ps-1"> Messages </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link text-white " data-bs-toggle="collapse" aria-expanded="false" href="#usersExample">
-                  <span class="sidenav-mini-icon"> U </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Users <b class="caret"></b></span>
-                </a>
-                <div class="collapse " id="usersExample">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a class="nav-link text-white " href="../../pages/pages/users/reports.html">
-                        <span class="sidenav-mini-icon"> R </span>
-                        <span class="sidenav-normal  ms-2  ps-1"> Reports </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-white " href="../../pages/pages/users/new-user.html">
-                        <span class="sidenav-mini-icon"> N </span>
-                        <span class="sidenav-normal  ms-2  ps-1"> New User </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            
-            </ul>
-          </div>
-        </li>
+       
+       
+      
 
 
         <li class="nav-item mb-2 mt-0">

@@ -36,7 +36,7 @@
                         <td class="text-sm font-weight-normal">{{ $budget->period }}</td>
                         <td class="text-sm font-weight-normal">{{ $budget->month_name }}</td>
                         <td class="text-sm font-weight-normal">{{ $budget->year }}</td>
-                        <td class="text-sm font-weight-normal">{{ $budget->budget_amount }}</td>
+                        <td class="text-sm font-weight-normal ">{{  $budget->budget_amount  }}</td>
 
                         <td class="text-sm font-weight-normal">
 

@@ -532,6 +532,59 @@
     @endif
 </script>
 
+
+<script>
+$.get('https://openexchangerates.org/api/latest.json', { app_id: '241adaf13f2e4d2d9e901e82d1548a10' }, function (data) {
+    var options = '';
+    var rates = data.rates;
+
+    Object.keys(rates).forEach(function (currencyCode) {
+        var currencyRate = rates[currencyCode];
+       
+
+        options += '<option value="' + currencyRate + '">' + currencyCode + '</option>';
+    });
+
+    $('#currency').html(options);
+});
+
+
+$('#currency').change(function () {
+    var rate = $(this).val();
+  
+    $.ajax({
+        url: 'currency-converter/'+rate,
+        type: 'GET',
+        success: function (response) {
+            console.log(response);
+        }
+        
+    });
+    
+});
+
+ 
+
+
+
+
+// $.get('https://openexchangerates.org/api/currencies.json', function(data) {
+//     // Iterate through the properties (currencies) in the data object
+
+//     var options = '';
+//     Object.keys(data).forEach(function(currencyCode) {
+//         var currencyName = data[currencyCode];
+//         console.log(currencyCode + ': ' + currencyName);
+
+//         options += '<option value="' + currencyCode + '">' + currencyCode + '</option>';
+//     });
+
+//     $('#currency').html(options);
+// });
+
+
+</script>
+
 @yield('datatables')
 
 

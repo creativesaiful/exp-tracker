@@ -52,9 +52,9 @@
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link text-white " href="../../pages/dashboards/sales.html">
-                  <span class="sidenav-mini-icon"> S </span>
-                  <span class="sidenav-normal  ms-2  ps-1"> Sales </span>
+                <a class="nav-link text-white " href="{{route('expenseView')}}">
+                  <span class="sidenav-mini-icon"> E </span>
+                  <span class="sidenav-normal  ms-2  ps-1"> Expenses </span>
                 </a>
               </li>
               <li class="nav-item ">

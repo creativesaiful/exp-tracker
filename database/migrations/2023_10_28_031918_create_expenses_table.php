@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');            
             $table->double('expense_amount');
             $table->longText('description')->nullable();
-            $table->enum('payment_method', ['Cash','Credit Card','Bank Cheque'])->default('cash');
+            $table->enum('payment_method', ['Cash','Card','Cheque'])->default('cash');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();

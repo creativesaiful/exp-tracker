@@ -501,6 +501,7 @@
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+  
 
   <script src="{{asset('assets/js/plugins/datatables.js')}}"></script>
  

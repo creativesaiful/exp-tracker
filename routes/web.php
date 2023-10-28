@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\ExpenseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,17 @@ Route::middleware([
     Route::get('delete-budget/{id}',   [BudgetController::class, 'DeleteBudget'])->name('delete-budget');
 
     // Expense Routes
-    Route::get('/expenses', [ExpenseController::class,'index()'] )->name('expenses');
+    Route::get('/expense', [ExpenseController::class,'ExpenseView'] )->name('expenseView');
+    
+   
+
+    Route::post('store-expense', [ExpenseController::class,'ExpenseStore'] )->name('store-expense');
+    
+    //Ajax for expense
+    Route::get('/expenses', [ExpenseController::class,'ExpenseList'] )->name('ExpenseList');
+    Route::get('edit-expense/{id}', [ExpenseController::class,'ExpenseEdit'] );
+   
+    Route::get('expenses/{id}', [ExpenseController::class,'ExpenseDelete'] );
+    Route::post('update-expense/{id}', [ExpenseController::class,'ExpenseUpdate'] );
 
 });

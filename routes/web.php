@@ -5,6 +5,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\CurrencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,5 +64,8 @@ Route::middleware([
    
     Route::get('expenses/{id}', [ExpenseController::class,'ExpenseDelete'] );
     Route::post('update-expense/{id}', [ExpenseController::class,'ExpenseUpdate'] );
+
+
+    Route::get('currency-converter/{rate}', [CurrencyController::class, 'coverter'])->name('currency-converter');
 
 });

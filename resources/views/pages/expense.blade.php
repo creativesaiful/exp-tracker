@@ -10,6 +10,8 @@
     </div>
 
 
+  
+
 
     <div class="table-responsive">
         <table class="table table-flush" id="expense-table">
@@ -28,9 +30,9 @@
                 </tr>
             </thead>
             <tbody id="expense-body">
-           
-               
-            
+
+
+
 
 
             </tbody>
@@ -44,7 +46,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title font-weight-normal" id="addExpenseModal">Add Expense</h5>
+                    <h5 class="modal-title font-weight-normal" >Add Expense</h5>
                     <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -107,7 +109,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title font-weight-normal" id="editExpenseModal">Edit Expense</h5>
+                    <h5 class="modal-title font-weight-normal" >Edit Expense</h5>
                     <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -140,11 +142,7 @@
                                 <option value="Card">Card</option>
                                 <option value="Cheque">Cheque</option>
                             </select>
-                        </div> 
-
-
-
-
+                        </div>
 
 
                         <div class="input-group input-group-outline mb-3">
@@ -168,7 +166,7 @@
 
 @section('datatables')
     <script>
-        $(document).ready(function() {
+    
 
 
 
@@ -200,15 +198,13 @@
                         <td>${response[i].description}</td>
                         <td>${response[i].category.category_name}</td>
                         <td>${response[i].payment_method}</td>
-                        <td class="amount">${response[i].expense_amount}</td>
+                        <td class="amount" data-current ="${response[i].expense_amount}" >${response[i].expense_amount}</td>
                         <td>
                             
                             <button type="button" class="btn bg-gradient-info edit" data-bs-toggle="modal" data-bs-target="#editExpenseModal" onclick="editExpense(${response[i].id})">Edit</button>
 
                             <button type="button" class="btn bg-gradient-danger edit" onclick="deleteExpense(${response[i].id})">Delete</button>
                             
-
-
 
                           
                         </td>
@@ -217,13 +213,11 @@
                         }
 
 
-               
-
                         // Set the HTML of the #expense-table element after the loop
                         $('#expense-body').html(Html);
                     }
                 });
-            }
+            };
 
             //Add expesns
             function storeExpense() {
@@ -306,8 +300,8 @@
                     }
                 });
             }
-          
 
-        });
+
+       
     </script>
 @endsection

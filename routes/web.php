@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::middleware([
 
     Route::get('/profile', [UserProfileController::class, 'ProfileView'])->name('profile');
     Route::post('/profile', [UserProfileController::class, 'ProfileUpdate'])->name('profile.update');
+    //Route::post('/password-change', [PasswordController::class, 'PasswordUpdate'])->name('pages.password-change');
+    Route::post('/password-change', [PasswordController::class, 'PasswordUpdate']);
 
 
     Route::get('categories', [CategoryController::class, 'CategoryList'])->name('categories');

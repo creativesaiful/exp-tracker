@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+xxxxxxxxxxxxxxxx
 @section('content')
     <div class="card card-body" id="profile">
         <div class="row justify-content-center align-items-center">
@@ -21,11 +21,11 @@
 
         </div>
 
-        <div class="card mt-4" id="basic-info">
+        <div class="card mt-4" id="basic-info">`
             <div class="card-header">
-                <h5>Basic Info</h5>
+                <h5>Update / Change Password</h5>
             </div>
-            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="multisteps-form__form">
+            <form action="{{ route('pages.password-change') }}" method="POST" enctype="multipart/form-data" class="multisteps-form__form">
 
                 @if (count($errors) > 0)
                 <div class="alert alert-danger text-white">
@@ -42,48 +42,27 @@
                 <div class="card-body pt-0">
                     <div class="row">
                         <div class="col-6">
-                            <div class="input-group input-group-static">
-                                <label>First Name</label>
-                                <input type="text" name="name" class="form-control" value="{{ $user->name }}">
+                            <div class="input-group input-group-static text-center">
+                                <label>Existing Password</label>
+                                <input type="text" name="existing-password" class="form-control" value="{{}}">
+                            </div>
+                            <div class="input-group input-group-static text-center">
+                                <label>New Password</label>
+                                <input type="text" name="new-password" class="form-control" value="{{}}">
+                            </div>
+                            <div class="input-group input-group-static text-center">
+                                <label>Confirm Password</label>
+                                <input type="text" name="confirm-password" class="form-control" value="{{}}">
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="input-group input-group-static">
-                                <label>Phone Number</label>
-                                <input type="tel" class="form-control" name="phone"
-                                    value="{{ @$user->phone ? $user->phone : '+880123456789' }}">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control ms-0">Default Currency</label>
-                            <select class="form-control p-2 border" name="default_currency" id="choices-category">
-                                <option selected="" disabled>Select</option>
-                                <option value="usd" > USD </option>
-                                <option value="bdt">BDT </option>
-                                <option value="uae">UAE</option>
-                                <option value="euro">EURO</option>
-                            </select>
-                        </div>
-
-                     
-
-                        <div class="col-6">
-                            <label class="form-control mb-0">Profile images</label>
-                            <input type="file" name="profile_image" class="form-control"  >
-                        </div>
-
                     </div>
 
                     <hr>
 
                     <div class="row">
                         <div class="col-6">
-                            <input type="submit" value="Update" class="btn btn-primary d-block w-25">
-
+                            <input type="submit" value="Update" class="btn btn-primary d-block">
+                            <input type="" value="Change Password" class="btn btn-warning w-25">
                         </div>
                     </div>
 

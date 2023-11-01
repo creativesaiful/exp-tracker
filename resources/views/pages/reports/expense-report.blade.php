@@ -54,3 +54,7 @@
 </div>
 
 @endsection
+
+@section('datatables')
+
+@endsection

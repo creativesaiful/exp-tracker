@@ -6,7 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\CurrencyController;
-
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,6 +70,7 @@ Route::middleware([
 
     Route::get('currency-converter/{rate}', [CurrencyController::class, 'coverter'])->name('currency-converter');
 
+
     //Reports Route
 
     Route::get('expense-reports', function () {
@@ -80,5 +81,7 @@ Route::middleware([
         return view('pages.reports.budget-report');
     })->name('budget-reports');
 
+
+  
 
 });

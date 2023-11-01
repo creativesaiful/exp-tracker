@@ -76,6 +76,7 @@
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{asset('/assets/js/plugins/flatpickr.min.js')}}"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -660,6 +661,7 @@
   
            
     </script>
+    
 
 </body>
 

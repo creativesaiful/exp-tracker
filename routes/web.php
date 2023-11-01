@@ -70,4 +70,15 @@ Route::middleware([
 
     Route::get('currency-converter/{rate}', [CurrencyController::class, 'coverter'])->name('currency-converter');
 
+    //Reports Route
+
+    Route::get('expense-reports', function () {
+        return view('pages.reports.expense-report');
+    })->name('expense-reports');
+
+    Route::get('budget-reports', function () {
+        return view('pages.reports.budget-report');
+    })->name('budget-reports');
+
+
 });

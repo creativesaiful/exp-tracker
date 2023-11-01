@@ -21,22 +21,22 @@
         <li class="nav-item">
           <a href="{{ route('dashboard') }}" class="nav-link text-white {{ ($route == 'dashboard') ? 'active' : '' }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
             <i class="material-icons-round opacity-10">dashboard</i>
-            <span class="nav-link-text ms-2 ps-1">Dashboards</span>
+            <span class="nav-link-text ms-2 ps-1">Dashboard</span>
           </a>
           
         </li>
 
         <li class="nav-item">
           <a href="{{ route('categories') }}" class="nav-link text-white  {{  $route == 'categories' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
-            <i class="material-icons-round opacity-10">dashboard</i>
-            <span class="nav-link-text ms-2 ps-1">Expense Category</span>
+            <i class="material-icons-round opacity-10">category</i>
+            <span class="nav-link-text ms-2 ps-1">Expense Categories</span>
           </a>
           
         </li>
 
         <li class="nav-item">
           <a href="{{ route('budgets') }}" class="nav-link text-white  {{  $route == 'budgets' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
-            <i class="material-icons-round opacity-10">dashboard</i>
+            <i class="material-icons-round opacity-10">request_quote</i>
             <span class="nav-link-text ms-2 ps-1">Budgets</span>
           </a>
           
@@ -45,11 +45,26 @@
 
         <li class="nav-item">
           <a href="{{ route('expenseView') }}" class="nav-link text-white  {{  $route == 'expenseView' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
-            <i class="material-icons-round opacity-10">dashboard</i>
+            <i class="material-icons-round opacity-10">monetization_on</i>
             <span class="nav-link-text ms-2 ps-1">Expenses</span>
           </a>
           
         </li>
+        <li class="nav-item">
+          <a href="{{ route('expense-reports') }}" class="nav-link text-white  {{  $route == 'expenseView' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+            <i class="material-icons-round opacity-10">receipt_long</i>
+            <span class="nav-link-text ms-2 ps-1">Expense Reports</span>
+          </a>
+          
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('budget-reports') }}" class="nav-link text-white  {{  $route == 'expenseView' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+            <i class="material-icons-round opacity-10">summarize</i>
+            <span class="nav-link-text ms-2 ps-1">Budget Reports</span>
+          </a>
+          
+        </li>
+
 
 
 

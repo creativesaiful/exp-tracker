@@ -71,14 +71,17 @@ Route::middleware([
     Route::get('currency-converter/{rate}', [CurrencyController::class, 'coverter'])->name('currency-converter');
 
 
+    //Reports Route
+
+    Route::get('expense-reports', function () {
+        return view('pages.reports.expense-report');
+    })->name('expense-reports');
+
+    Route::get('budget-reports', function () {
+        return view('pages.reports.budget-report');
+    })->name('budget-reports');
 
 
-    //Report routes
-    Route::prefix('report')->group(function(){
-        Route::get('expense', [ReportController::class, 'ReportExpenseView']);
-
-        //Expense Report ajax
-        Route::post('expense', [ReportController::class, 'ReportExpense']);
-    });
+  
 
 });

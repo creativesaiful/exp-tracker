@@ -560,6 +560,10 @@
 
         var current_code = sessionStorage.getItem("current_code");
         var current_rate = sessionStorage.getItem("current_rate");
+
+        if(current_rate== null){
+            current_rate = 1;
+        }
         console.log(current_rate);
 
         $.ajax({

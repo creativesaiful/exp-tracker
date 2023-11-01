@@ -32,9 +32,6 @@
             <tbody id="expense-body">
 
 
-
-
-
             </tbody>
         </table>
     </div>
@@ -47,7 +44,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title font-weight-normal" >Add Expense</h5>
-                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close" >
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -56,12 +53,26 @@
                         @csrf
                         <div class="input-group input-group-static mb-4">
                             <label for="category" class="ms-0">Select Expense Category</label>
-                            <select class="form-control" id="category_id" name="category_id" required>
-                                <option selected> Select </option>
+                            <select class="form-control" id="category_id" onchange="showbudget()" name="category_id" required>
+                                <option selected > Select </option>
                                 @foreach ($cate as $cat)
                                     <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
                                 @endforeach
                             </select>
+
+                            <div class="row">
+                                <div class="col-6 text-success">
+                                    
+                                    <p id="monthly_budget"></p>
+                                </div>
+
+                                <div class="col-6 text-success">
+                                    <p id="yearly_budget"></p>
+                                </div>
+
+
+                            </div>
+
                         </div>
 
                         <div class="input-group input-group-outline mb-3">
@@ -218,6 +229,24 @@
                     }
                 });
             };
+
+
+            function showbudget() {
+                var category = $('#category_id').val();   
+                $.ajax({
+                    url: 'check-budget/'+ category,   
+                    type: 'GET',
+                    success: function(response) {
+                        
+                        console.log(response);
+
+                       $('#monthly_budget').text('Monthly budget remaining: '+response.remaining_monthly_budget);
+                       $('#yearly_budget').text('Yearly budget remaining: '+response.remaining_yearly_budget);
+                    }
+                });
+
+
+            }
 
             //Add expesns
             function storeExpense() {

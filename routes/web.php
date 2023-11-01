@@ -51,6 +51,8 @@ Route::middleware([
     Route::post('store-budget', [BudgetController::class, 'BudgetStore'])->name('budget-store');
     Route::get('delete-budget/{id}',   [BudgetController::class, 'DeleteBudget'])->name('delete-budget');
 
+    Route::get('check-budget/{category_id}', [BudgetController::class, 'CheckBudget'])->name('check-budget');
+
     // Expense Routes
     Route::get('/expense', [ExpenseController::class,'ExpenseView'] )->name('expenseView');
     

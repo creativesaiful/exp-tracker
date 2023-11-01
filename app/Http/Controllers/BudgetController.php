@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Budget;
 use App\Models\Category;
+use App\Models\Expense;
 use Illuminate\Support\Facades\Schema;
 
 class BudgetController extends Controller
@@ -107,5 +108,67 @@ class BudgetController extends Controller
                      'message'=>'Something went wrong',
                  ]);
              }
+         }
+
+
+
+
+         //ajax for budget check
+         public function CheckBudget($category_id){
+            //get budget for this month and year
+            $monthly_budget = Budget::where('user_id', auth()->user()->id)
+            ->where('category_id', $category_id)
+            ->where('period', 'monthly')
+            ->where('month_name', date('F'))
+            ->where('year', date('Y'))
+            ->select('budget_amount')
+            ->first();
+        
+        $yearly= Budget::where('user_id', auth()->user()->id)
+            ->where('category_id', $category_id)
+            ->where('period', 'yearly')
+            ->where('year', date('Y'))
+            ->first();
+
+        
+
+        if($yearly != null){
+            $yearly_budget = $yearly->budget_amount;
+        }else{
+            $yearly_budget = Budget::where('user_id', auth()->user()->id)
+            ->where('category_id', $category_id)
+            ->where('period', 'monthly')
+            ->where('year', date('Y'))
+            ->sum('budget_amount');
+
+            if($yearly_budget == null){
+                $yearly_budget = 0;
+            }
+        }
+        
+
+
+        
+        // Extract the budget_amount value from the $monthly_budget object
+        $monthly_budget_amount = $monthly_budget ? $monthly_budget->budget_amount : 0;
+        
+        //get expense total for this month and year in this category
+        $total_expense_month = Expense::where('user_id', auth()->user()->id)
+            ->where('category_id', $category_id)
+            ->whereBetween('created_at', [now()->startOfMonth(), now()])
+            ->sum('expense_amount');
+        
+        $remaining_monthly_budget = $monthly_budget_amount - $total_expense_month;
+        $remaining_yearly_budget = $yearly_budget - $total_expense_month;
+
+            return response ()->json([
+                'remaining_monthly_budget' => $remaining_monthly_budget,
+                'remaining_yearly_budget' => $remaining_yearly_budget,
+                
+               
+            ]);
+
+
+
          }
 }

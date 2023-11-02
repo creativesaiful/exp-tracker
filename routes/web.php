@@ -69,7 +69,7 @@ Route::middleware([
 
 
     Route::get('expense-report', [ReportController::class, 'ReportExpenseView'])->name('expense.report');
-    Route::post('expense-report-filter', [ReportController::class, 'ReportExpenseFilter'])->name('search-expense-report');
+    Route::post('expense-report', [ReportController::class, 'ReportExpenseFilter'])->name('expense-report-filter');
 
 
 

@@ -50,11 +50,11 @@ class ReportController extends Controller
     
         $result = $expenses->with('Category')->get();
 
-      
 
-        return response()->json([
-            'result' => $result
-        ]);
+        $cate = Category::where('user_id', auth()->user()->id)->get();
+      
+        return view('pages.reports.expense-report', compact('cate', 'result'));
+      
 
 
 

@@ -86,7 +86,7 @@
                 @foreach ($result as $key => $res)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td>{{ date('d-m-Y', strtotime($res->created_at)) }}</td>
+                        <td>{{ date('d-M-Y', strtotime($res->created_at)) }}</td>
                         <td>{{ $res->description }}</td>
                         <td>{{ $res->Category->category_name }}</td>
                         <td>{{ $res->payment_method }}</td>
@@ -104,20 +104,10 @@
                     
                 </tr>
 
-                
-
-                   
-              
-
-
-
 
 
             </tbody>
         </table>
-
-
-        
 
 
 
@@ -148,9 +138,7 @@
                     }
                 }
             }
-
-            
-            
+ 
            
         ]
     } );

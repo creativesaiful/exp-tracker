@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Expense;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -12,9 +13,11 @@ class ReportController extends Controller
         $cate = Category::where('user_id', auth()->user()->id)->get();
 
 
-        //start date will be 1 month ago
-        $start_date =  date('Y-m-d', strtotime('-1 month'));
-        $end_date = date('Y-m-d');
+        //start date should be 1 month ago 00:00:00
+        $start_date = Carbon::now()->subMonth()->startOfMonth();
+
+         //end date will be today 24:00:00
+        $end_date = Carbon::now();
 
     
         $expenses = Expense::where('user_id', auth()->user()->id)
@@ -22,6 +25,8 @@ class ReportController extends Controller
     
     
         $result = $expenses->with('Category')->get();
+
+        
 
         return view('pages.reports.expense-report', compact('cate', 'result'));
     }
@@ -54,13 +59,7 @@ class ReportController extends Controller
         $cate = Category::where('user_id', auth()->user()->id)->get();
       
         return view('pages.reports.expense-report', compact('cate', 'result'));
-      
-
-
-
-       
-
-        
+            
     }
     
 

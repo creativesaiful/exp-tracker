@@ -279,13 +279,7 @@
         });
 
       //after change currency option will be sellected
-      
-
-        
-
-
-
-        //Currency conversion without preserving original values
+              //Currency conversion without preserving original values
         $('#currency').change(function() {
             var rate = $(this).val();
             var code = $(this).find(':selected').text();
@@ -317,10 +311,6 @@
         });
 
        
-    
-
-
-  
            
     </script>
     

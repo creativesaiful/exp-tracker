@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-2">
                 <label for=""> Payment Method </label>
-                <select class="form-select p-2" id="payment_method" name="payment">
+                <select class="form-select p-2" id="payment_method" name="payment_method">
                     <option disabled selected>Select Payment Method</option>
                     <option value="Cash">Cash</option>
                     <option value="Card">Card</option>

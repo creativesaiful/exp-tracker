@@ -3,17 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Expense;
 
 class ReportController extends Controller
 {
     public function ReportExpenseView(){
-        
-    }
+        $cate = Category::where('user_id', auth()->user()->id)->get();
 
-    public function ReportExpense(Request $request){
+
+        //start date will be 1 month ago
+        $start_date =  date('Y-m-d', strtotime('-1 month'));
+        $end_date = date('Y-m-d');
 
     
+        $expenses = Expense::where('user_id', auth()->user()->id)
+            ->whereBetween('created_at', [$start_date, $end_date]);
+    
+    
+        $result = $expenses->with('Category')->get();
+
+        return view('pages.reports.expense-report', compact('cate', 'result'));
+    }
+
+    public function ReportExpenseFilter(Request $request){
 
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
@@ -35,13 +48,19 @@ class ReportController extends Controller
             $expenses->where('payment_method', $payment_method);
         }
     
-        $result = $expenses->get();
+        $result = $expenses->with('Category')->get();
 
-    
-        // You can return the result or perform other actions as needed
+      
 
-        $expenses = Expense::get();
-        return $result;
+        return response()->json([
+            'result' => $result
+        ]);
+
+
+
+       
+
+        
     }
     
 

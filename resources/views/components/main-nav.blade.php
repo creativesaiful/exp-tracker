@@ -51,14 +51,14 @@
           
         </li>
         <li class="nav-item">
-          <a href="{{ route('expense-reports') }}" class="nav-link text-white  {{  $route == 'expenseView' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+          <a href="{{route('expense.report')}}" class="nav-link text-white  {{  $route == 'expense.report' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
             <i class="material-icons-round opacity-10">receipt_long</i>
             <span class="nav-link-text ms-2 ps-1">Expense Reports</span>
           </a>
           
         </li>
         <li class="nav-item">
-          <a href="{{ route('budget-reports') }}" class="nav-link text-white  {{  $route == 'expenseView' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+          <a href="" class="nav-link text-white  {{  $route == 'expenseView' ? 'active' : ''  }}" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
             <i class="material-icons-round opacity-10">summarize</i>
             <span class="nav-link-text ms-2 ps-1">Budget Reports</span>
           </a>

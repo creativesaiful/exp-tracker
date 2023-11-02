@@ -68,20 +68,12 @@ Route::middleware([
     Route::post('update-expense/{id}', [ExpenseController::class,'ExpenseUpdate'] );
 
 
-    Route::get('currency-converter/{rate}', [CurrencyController::class, 'coverter'])->name('currency-converter');
+    Route::get('expense-report', [ReportController::class, 'ReportExpenseView'])->name('expense.report');
+    Route::post('expense-report-filter', [ReportController::class, 'ReportExpenseFilter'])->name('search-expense-report');
 
 
-    //Reports Route
-
-    Route::get('expense-reports', function () {
-        return view('pages.reports.expense-report');
-    })->name('expense-reports');
-
-    Route::get('budget-reports', function () {
-        return view('pages.reports.budget-report');
-    })->name('budget-reports');
-
-
-  
 
 });
+
+
+Route::get('currency-converter/{rate}', [CurrencyController::class, 'coverter'])->name('currency-converter');
